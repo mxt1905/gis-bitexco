@@ -3,7 +3,6 @@ package com.example.gisbitexco.entity;
 import com.example.gisbitexco.constants.TableConst.ColumnName;
 import com.example.gisbitexco.constants.TableConst.TableName;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -17,7 +16,6 @@ import java.util.Set;
 @Table(name = TableName.BODY)
 @Getter
 @Setter
-@NoArgsConstructor
 public class Body {
 
     @Id

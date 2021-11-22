@@ -2,7 +2,6 @@ package com.example.gisbitexco.entity;
 
 import com.example.gisbitexco.constants.TableConst.TableName;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,7 +13,6 @@ import javax.persistence.*;
 @Table(name = TableName.FIELD)
 @Getter
 @Setter
-@NoArgsConstructor
 public class Field {
 
     @Id
