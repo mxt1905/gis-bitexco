@@ -40,7 +40,7 @@ public class BodyMapperImpl implements BodyMapper {
     @Override
     public List<BodyDto> toDtoList(List<Body> bodies) {
         if (Objects.isNull(bodies) || bodies.isEmpty())
-            return null;
+            return Collections.emptyList();
         List<BodyDto> response = new ArrayList<>();
         bodies.forEach(body -> response.add(this.toDto(body)));
         return response;
@@ -49,7 +49,7 @@ public class BodyMapperImpl implements BodyMapper {
     @Override
     public Set<BodyDto> toDtoSet(Set<Body> bodies) {
         if (Objects.isNull(bodies) || bodies.isEmpty())
-            return null;
+            return Collections.emptySet();
         Set<BodyDto> response = new HashSet<>();
         bodies.forEach(body -> response.add(this.toDto(body)));
         return response;

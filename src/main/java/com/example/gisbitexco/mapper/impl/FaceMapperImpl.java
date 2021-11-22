@@ -35,7 +35,7 @@ public class FaceMapperImpl implements FaceMapper {
     @Override
     public List<FaceDto> toDtoList(List<Face> faces) {
         if (Objects.isNull(faces) || faces.isEmpty())
-            return null;
+            return Collections.emptyList();
         List<FaceDto> response = new ArrayList<>();
         faces.forEach(face -> response.add(this.toDto(face)));
         return response;
@@ -44,7 +44,7 @@ public class FaceMapperImpl implements FaceMapper {
     @Override
     public Set<FaceDto> toDtoSet(Set<Face> faces) {
         if (Objects.isNull(faces) || faces.isEmpty())
-            return null;
+            return Collections.emptySet();
         Set<FaceDto> response = new HashSet<>();
         faces.forEach(face -> response.add(this.toDto(face)));
         return response;

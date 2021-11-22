@@ -12,7 +12,7 @@ import java.util.*;
  */
 @Component
 public class FieldMapperImpl implements FieldMapper {
-    
+
     @Override
     public FieldDto toDto(Field field) {
         if (Objects.isNull(field))
@@ -26,7 +26,7 @@ public class FieldMapperImpl implements FieldMapper {
     @Override
     public List<FieldDto> toDtoList(List<Field> fields) {
         if (Objects.isNull(fields) || fields.isEmpty())
-            return null;
+            return Collections.emptyList();
         List<FieldDto> response = new ArrayList<>();
         fields.forEach(field -> response.add(this.toDto(field)));
         return response;
@@ -35,7 +35,7 @@ public class FieldMapperImpl implements FieldMapper {
     @Override
     public Set<FieldDto> toDtoSet(Set<Field> fields) {
         if (Objects.isNull(fields) || fields.isEmpty())
-            return null;
+            return Collections.emptySet();
         Set<FieldDto> response = new HashSet<>();
         fields.forEach(field -> response.add(this.toDto(field)));
         return response;

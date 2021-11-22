@@ -28,7 +28,7 @@ public class NodeMapperImpl implements NodeMapper {
     @Override
     public List<NodeDto> toDtoList(List<Node> nodes) {
         if (Objects.isNull(nodes) || nodes.isEmpty())
-            return null;
+            return Collections.emptyList();
         List<NodeDto> response = new ArrayList<>();
         nodes.forEach(node -> response.add(this.toDto(node)));
         return response;
@@ -37,7 +37,7 @@ public class NodeMapperImpl implements NodeMapper {
     @Override
     public Set<NodeDto> toDtoSet(Set<Node> nodes) {
         if (Objects.isNull(nodes) || nodes.isEmpty())
-            return null;
+            return Collections.emptySet();
         Set<NodeDto> response = new HashSet<>();
         nodes.forEach(node -> response.add(this.toDto(node)));
         return response;
