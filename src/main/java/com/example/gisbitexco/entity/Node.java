@@ -1,18 +1,17 @@
 package com.example.gisbitexco.entity;
 
+import com.example.gisbitexco.constants.TableConst.TableName;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Node
  */
 @Entity
+@Table(name = TableName.NODE)
 @Getter
 @Setter
 @NoArgsConstructor

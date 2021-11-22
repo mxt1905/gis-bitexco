@@ -1,5 +1,7 @@
 package com.example.gisbitexco.entity;
 
+import com.example.gisbitexco.constants.TableConst.ColumnName;
+import com.example.gisbitexco.constants.TableConst.TableName;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +14,7 @@ import java.util.Set;
  * Body
  */
 @Entity
+@Table(name = TableName.BODY)
 @Getter
 @Setter
 @NoArgsConstructor
@@ -34,12 +37,12 @@ public class Body {
     private String bodyAddress;
 
     @OneToOne
-    @JoinColumn(name = "field_id")
+    @JoinColumn(name = ColumnName.FIELD_ID)
     private Field field;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "body_face",
-        joinColumns = @JoinColumn(name = "body_id"),
-        inverseJoinColumns = @JoinColumn(name = "face_id"))
+    @JoinTable(name = TableName.BODY_FACE,
+        joinColumns = @JoinColumn(name = ColumnName.BODY_ID),
+        inverseJoinColumns = @JoinColumn(name = ColumnName.FACE_ID))
     private Set<Face> faces = new HashSet<>();
 }

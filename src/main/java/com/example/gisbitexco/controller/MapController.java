@@ -1,5 +1,8 @@
 package com.example.gisbitexco.controller;
 
+import com.example.gisbitexco.constants.ArcgisConst.Attribute.Building;
+import com.example.gisbitexco.constants.ArcgisConst.Attribute.Graphic;
+import com.example.gisbitexco.constants.ArcgisConst.Value;
 import com.example.gisbitexco.dto.BodyDto;
 import com.example.gisbitexco.dto.FaceDto;
 import com.example.gisbitexco.service.BodyService;
@@ -27,6 +30,7 @@ public class MapController {
 
     private final FaceService faceService;
     private final BodyService bodyService;
+    private static final String BUILDING_DESCRIPTION = "Tòa Hành Chính Bitexco Financial";
 
     @RequestMapping("/map")
     public ModelAndView showMap3DPage() {
@@ -54,18 +58,18 @@ public class MapController {
             });
 
 
-            if (faceDto.getFaceType().equals("polygon")) {
-                json.put("types", "polygon");
-                json.put("rings", list);
+            if (faceDto.getFaceType().equals(Value.POLYGON)) {
+                json.put(Graphic.TYPES, Value.POLYGON);
+                json.put(Graphic.RINGS, list);
             } else {
-                json.put("type", "polyline");
-                json.put("paths", list);
+                json.put(Graphic.TYPE, Value.POLYLINE);
+                json.put(Graphic.PATHS, list);
             }
 
             String s = faceDto.getFaceSymbolRenderer();
             JSONParser parser = new JSONParser();
             JSONObject ob = (JSONObject) parser.parse(s);
-            json.put("symbol", ob);
+            json.put(Graphic.SYMBOL, ob);
             jsonList.add(json);
         }
 
@@ -81,18 +85,18 @@ public class MapController {
                 list.add(jsonArrayCoordinates);
             });
 
-            if (faceDto.getFaceType().equals("polygon")) {
-                json.put("types", "polygon");
-                json.put("rings", list);
+            if (faceDto.getFaceType().equals(Value.POLYGON)) {
+                json.put(Graphic.TYPES, Value.POLYGON);
+                json.put(Graphic.RINGS, list);
             } else {
-                json.put("type", "polyline");
-                json.put("paths", list);
+                json.put(Graphic.TYPE, Value.POLYLINE);
+                json.put(Graphic.PATHS, list);
             }
 
             String s = faceDto.getFaceSymbolRenderer();
             JSONParser parser = new JSONParser();
             JSONObject ob = (JSONObject) parser.parse(s);
-            json.put("symbol", ob);
+            json.put(Graphic.SYMBOL, ob);
             jsonList.add(json);
         }
 
@@ -119,24 +123,24 @@ public class MapController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put("type", "Polygon");
-            geometry.put("coordinates", coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
             int a = i - 97;
-            properties.put("Building name", "Floor " + a + "Bitexco Financial");
-            properties.put("Height", body.getBodyHeight());
-            properties.put("Color", body.getBodyColor());
+            properties.put("Building name", "Floor " + a + " Bitexco Financial");
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put("type", "Feature");
-            feature.put("properties", properties);
-            feature.put("geometry", geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put("features", features);
-        featureCollection.put("type", "FeatureCollection");
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
@@ -161,23 +165,23 @@ public class MapController {
 
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put("type", "Polygon");
-            geometry.put("coordinates", coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
             properties.put("Name", "Khung Bitexco Financial");
-            properties.put("Height", body.getBodyHeight());
-            properties.put("color", body.getBodyColor());
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put("type", "Feature");
-            feature.put("properties", properties);
-            feature.put("geometry", geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put("features", features);
-        featureCollection.put("type", "FeatureCollection");
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
@@ -202,23 +206,23 @@ public class MapController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put("type", "Polygon");
-            geometry.put("coordinates", coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
-            properties.put("Name", "Tòa Hành Chính Bitexco Financial");
-            properties.put("Height", body.getBodyHeight());
-            properties.put("color", body.getBodyColor());
+            properties.put(Building.NAME, BUILDING_DESCRIPTION);
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put("type", "Feature");
-            feature.put("properties", properties);
-            feature.put("geometry", geometry);
+            feature.put(Graphic.TYPE, "Feature");
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put("features", features);
-        featureCollection.put("type", "FeatureCollection");
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
@@ -243,23 +247,23 @@ public class MapController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put("type", "Polygon");
-            geometry.put("coordinates", coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
-            properties.put("Name", "Tòa Hành Chính Bitexco Financial");
-            properties.put("Height", body.getBodyHeight());
-            properties.put("color", body.getBodyColor());
+            properties.put(Building.NAME, BUILDING_DESCRIPTION);
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put("type", "Feature");
-            feature.put("properties", properties);
-            feature.put("geometry", geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put("features", features);
-        featureCollection.put("type", "FeatureCollection");
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
@@ -284,29 +288,30 @@ public class MapController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put("type", "Polygon");
-            geometry.put("coordinates", coordinates);
+            geometry.put(Graphic.TYPE, "Polygon");
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
-            properties.put("Name", "Tòa Hành Chính Bitexco Financial");
-            properties.put("Height", body.getBodyHeight());
-            properties.put("color", body.getBodyColor());
+            properties.put(Building.NAME, BUILDING_DESCRIPTION);
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put("type", "Feature");
-            feature.put("properties", properties);
-            feature.put("geometry", geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put("features", features);
-        featureCollection.put("type", "FeatureCollection");
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
 
     @GetMapping("/api/bitexco_hanhchinh_bao.geojson")
     @ResponseBody
+    @SuppressWarnings("unchecked")
     public JSONObject getBitexcoGeoJson6() {
         BodyDto body = bodyService.searchById(1);
         JSONObject featureCollection = new JSONObject();
@@ -324,23 +329,23 @@ public class MapController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put("type", "Polygon");
-            geometry.put("coordinates", coordinates);
+            geometry.put(Graphic.TYPE, "Polygon");
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
-            properties.put("Name", "Tòa Hành Chính Bitexco Financial");
-            properties.put("Height", body.getBodyHeight());
-            properties.put("color", body.getBodyColor());
+            properties.put(Building.NAME, BUILDING_DESCRIPTION);
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put("type", "Feature");
-            feature.put("properties", properties);
-            feature.put("geometry", geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put("features", features);
-        featureCollection.put("type", "FeatureCollection");
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 }

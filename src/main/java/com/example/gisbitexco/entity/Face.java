@@ -1,5 +1,7 @@
 package com.example.gisbitexco.entity;
 
+import com.example.gisbitexco.constants.TableConst.ColumnName;
+import com.example.gisbitexco.constants.TableConst.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +13,7 @@ import java.util.Set;
  * Face
  */
 @Entity
+@Table(name = TableName.FACE)
 @Getter
 @Setter
 public class Face {
@@ -29,9 +32,9 @@ public class Face {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-        name = "face_node",
-        joinColumns = @JoinColumn(name = "face_id"),
-        inverseJoinColumns = @JoinColumn(name = "node_id")
+        name = TableName.FACE_NODE,
+        joinColumns = @JoinColumn(name = ColumnName.FACE_ID),
+        inverseJoinColumns = @JoinColumn(name = ColumnName.NODE_ID)
     )
     private Set<Node> nodes = new HashSet<>();
 }
