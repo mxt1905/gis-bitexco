@@ -1,6 +1,8 @@
 package com.example.gisbitexco.controller.rest;
 
-import com.example.gisbitexco.constants.ArcgisConst;
+import com.example.gisbitexco.constants.ArcgisConst.Attribute.Building;
+import com.example.gisbitexco.constants.ArcgisConst.Attribute.Graphic;
+import com.example.gisbitexco.constants.ArcgisConst.Value;
 import com.example.gisbitexco.dto.BodyDto;
 import com.example.gisbitexco.dto.FaceDto;
 import com.example.gisbitexco.service.BodyService;
@@ -45,18 +47,18 @@ public class MapRestController {
             });
 
 
-            if (faceDto.getFaceType().equals(ArcgisConst.Value.POLYGON)) {
-                json.put(ArcgisConst.Attribute.Graphic.TYPES, ArcgisConst.Value.POLYGON);
-                json.put(ArcgisConst.Attribute.Graphic.RINGS, list);
+            if (faceDto.getFaceType().equals(Value.POLYGON)) {
+                json.put(Graphic.TYPES, Value.POLYGON);
+                json.put(Graphic.RINGS, list);
             } else {
-                json.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.POLYLINE);
-                json.put(ArcgisConst.Attribute.Graphic.PATHS, list);
+                json.put(Graphic.TYPE, Value.POLYLINE);
+                json.put(Graphic.PATHS, list);
             }
 
             String s = faceDto.getFaceSymbolRenderer();
             JSONParser parser = new JSONParser();
             JSONObject ob = (JSONObject) parser.parse(s);
-            json.put(ArcgisConst.Attribute.Graphic.SYMBOL, ob);
+            json.put(Graphic.SYMBOL, ob);
             jsonList.add(json);
         }
 
@@ -72,18 +74,18 @@ public class MapRestController {
                 list.add(jsonArrayCoordinates);
             });
 
-            if (faceDto.getFaceType().equals(ArcgisConst.Value.POLYGON)) {
-                json.put(ArcgisConst.Attribute.Graphic.TYPES, ArcgisConst.Value.POLYGON);
-                json.put(ArcgisConst.Attribute.Graphic.RINGS, list);
+            if (faceDto.getFaceType().equals(Value.POLYGON)) {
+                json.put(Graphic.TYPES, Value.POLYGON);
+                json.put(Graphic.RINGS, list);
             } else {
-                json.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.POLYLINE);
-                json.put(ArcgisConst.Attribute.Graphic.PATHS, list);
+                json.put(Graphic.TYPE, Value.POLYLINE);
+                json.put(Graphic.PATHS, list);
             }
 
             String s = faceDto.getFaceSymbolRenderer();
             JSONParser parser = new JSONParser();
             JSONObject ob = (JSONObject) parser.parse(s);
-            json.put(ArcgisConst.Attribute.Graphic.SYMBOL, ob);
+            json.put(Graphic.SYMBOL, ob);
             jsonList.add(json);
         }
 
@@ -109,25 +111,24 @@ public class MapRestController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.POLYGON_CAP);
-            geometry.put(ArcgisConst.Attribute.Graphic.COORDINATES, coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
             int a = i - 97;
             properties.put("Building name", "Floor " + a + " Bitexco Financial");
-            properties.put(ArcgisConst.Attribute.Building.HEIGHT, body.getBodyHeight());
-            properties.put(ArcgisConst.Attribute.Building.COLOR, body.getBodyColor());
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE);
-            feature.put(ArcgisConst.Attribute.Graphic.PROPERTIES, properties);
-            feature.put(ArcgisConst.Attribute.Graphic.GEOMETRY, geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put(ArcgisConst.Attribute.Graphic.FEATURES, features);
-        featureCollection
-            .put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE_COLLECTION);
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
@@ -151,24 +152,23 @@ public class MapRestController {
 
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.POLYGON_CAP);
-            geometry.put(ArcgisConst.Attribute.Graphic.COORDINATES, coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
             properties.put("Name", "Khung Bitexco Financial");
-            properties.put(ArcgisConst.Attribute.Building.HEIGHT, body.getBodyHeight());
-            properties.put(ArcgisConst.Attribute.Building.COLOR, body.getBodyColor());
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE);
-            feature.put(ArcgisConst.Attribute.Graphic.PROPERTIES, properties);
-            feature.put(ArcgisConst.Attribute.Graphic.GEOMETRY, geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put(ArcgisConst.Attribute.Graphic.FEATURES, features);
-        featureCollection
-            .put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE_COLLECTION);
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
@@ -192,24 +192,23 @@ public class MapRestController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.POLYGON_CAP);
-            geometry.put(ArcgisConst.Attribute.Graphic.COORDINATES, coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
-            properties.put(ArcgisConst.Attribute.Building.NAME, BUILDING_DESCRIPTION);
-            properties.put(ArcgisConst.Attribute.Building.HEIGHT, body.getBodyHeight());
-            properties.put(ArcgisConst.Attribute.Building.COLOR, body.getBodyColor());
+            properties.put(Building.NAME, BUILDING_DESCRIPTION);
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(ArcgisConst.Attribute.Graphic.TYPE, "Feature");
-            feature.put(ArcgisConst.Attribute.Graphic.PROPERTIES, properties);
-            feature.put(ArcgisConst.Attribute.Graphic.GEOMETRY, geometry);
+            feature.put(Graphic.TYPE, "Feature");
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put(ArcgisConst.Attribute.Graphic.FEATURES, features);
-        featureCollection
-            .put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE_COLLECTION);
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
@@ -233,24 +232,23 @@ public class MapRestController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.POLYGON_CAP);
-            geometry.put(ArcgisConst.Attribute.Graphic.COORDINATES, coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
-            properties.put(ArcgisConst.Attribute.Building.NAME, BUILDING_DESCRIPTION);
-            properties.put(ArcgisConst.Attribute.Building.HEIGHT, body.getBodyHeight());
-            properties.put(ArcgisConst.Attribute.Building.COLOR, body.getBodyColor());
+            properties.put(Building.NAME, BUILDING_DESCRIPTION);
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE);
-            feature.put(ArcgisConst.Attribute.Graphic.PROPERTIES, properties);
-            feature.put(ArcgisConst.Attribute.Graphic.GEOMETRY, geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put(ArcgisConst.Attribute.Graphic.FEATURES, features);
-        featureCollection
-            .put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE_COLLECTION);
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
@@ -274,24 +272,23 @@ public class MapRestController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put(ArcgisConst.Attribute.Graphic.TYPE, "Polygon");
-            geometry.put(ArcgisConst.Attribute.Graphic.COORDINATES, coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
-            properties.put(ArcgisConst.Attribute.Building.NAME, BUILDING_DESCRIPTION);
-            properties.put(ArcgisConst.Attribute.Building.HEIGHT, body.getBodyHeight());
-            properties.put(ArcgisConst.Attribute.Building.COLOR, body.getBodyColor());
+            properties.put(Building.NAME, BUILDING_DESCRIPTION);
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE);
-            feature.put(ArcgisConst.Attribute.Graphic.PROPERTIES, properties);
-            feature.put(ArcgisConst.Attribute.Graphic.GEOMETRY, geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put(ArcgisConst.Attribute.Graphic.FEATURES, features);
-        featureCollection
-            .put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE_COLLECTION);
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 
@@ -315,24 +312,23 @@ public class MapRestController {
             });
             coordinates.add(list);
             JSONObject geometry = new JSONObject();
-            geometry.put(ArcgisConst.Attribute.Graphic.TYPE, "Polygon");
-            geometry.put(ArcgisConst.Attribute.Graphic.COORDINATES, coordinates);
+            geometry.put(Graphic.TYPE, Value.POLYGON_CAP);
+            geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
-            properties.put(ArcgisConst.Attribute.Building.NAME, BUILDING_DESCRIPTION);
-            properties.put(ArcgisConst.Attribute.Building.HEIGHT, body.getBodyHeight());
-            properties.put(ArcgisConst.Attribute.Building.COLOR, body.getBodyColor());
+            properties.put(Building.NAME, BUILDING_DESCRIPTION);
+            properties.put(Building.HEIGHT, body.getBodyHeight());
+            properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE);
-            feature.put(ArcgisConst.Attribute.Graphic.PROPERTIES, properties);
-            feature.put(ArcgisConst.Attribute.Graphic.GEOMETRY, geometry);
+            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.PROPERTIES, properties);
+            feature.put(Graphic.GEOMETRY, geometry);
 
             features.add(feature);
         }
-        featureCollection.put(ArcgisConst.Attribute.Graphic.FEATURES, features);
-        featureCollection
-            .put(ArcgisConst.Attribute.Graphic.TYPE, ArcgisConst.Value.FEATURE_COLLECTION);
+        featureCollection.put(Graphic.FEATURES, features);
+        featureCollection.put(Graphic.TYPE, Value.FEATURE_COLLECTION);
         return featureCollection;
     }
 }
