@@ -1,11 +1,14 @@
 package com.example.gisbitexco.service.impl;
 
 import com.example.gisbitexco.dto.BodyDto;
+import com.example.gisbitexco.entity.Body;
 import com.example.gisbitexco.mapper.BodyMapper;
 import com.example.gisbitexco.repository.BodyRepository;
 import com.example.gisbitexco.service.BodyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * BodyServiceImpl
@@ -19,6 +22,9 @@ public class BodyServiceImpl implements BodyService {
 
     @Override
     public BodyDto searchById(Integer id) {
-        return bodyMapper.toDto(bodyRepository.findById(id).get());
+        Optional<Body> body = bodyRepository.findById(id);
+        if (body.isEmpty())
+            return null;
+        return bodyMapper.toDto(body.get());
     }
 }
