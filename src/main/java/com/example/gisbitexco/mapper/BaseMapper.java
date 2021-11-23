@@ -7,9 +7,9 @@ import java.util.Set;
 
 /**
  * BaseMapper
- * <>
- * Map from output entity(ies) to DTO
- * </>
+ * <p>
+ * Map from entity to dto
+ * </p>
  *
  * @param <D> DTO types
  * @param <E> Entity type

@@ -121,7 +121,7 @@ public class MapRestController {
             properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.TYPE, Value.FEATURE_CAP);
             feature.put(Graphic.PROPERTIES, properties);
             feature.put(Graphic.GEOMETRY, geometry);
 
@@ -156,12 +156,12 @@ public class MapRestController {
             geometry.put(Graphic.COORDINATES, coordinates);
 
             JSONObject properties = new JSONObject();
-            properties.put("Name", "Khung Bitexco Financial");
+            properties.put(Building.NAME, "Khung Bitexco Financial");
             properties.put(Building.HEIGHT, body.getBodyHeight());
             properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.TYPE, Value.FEATURE_CAP);
             feature.put(Graphic.PROPERTIES, properties);
             feature.put(Graphic.GEOMETRY, geometry);
 
@@ -201,7 +201,7 @@ public class MapRestController {
             properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(Graphic.TYPE, "Feature");
+            feature.put(Graphic.TYPE, Value.FEATURE_CAP);
             feature.put(Graphic.PROPERTIES, properties);
             feature.put(Graphic.GEOMETRY, geometry);
 
@@ -241,7 +241,7 @@ public class MapRestController {
             properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.TYPE, Value.FEATURE_CAP);
             feature.put(Graphic.PROPERTIES, properties);
             feature.put(Graphic.GEOMETRY, geometry);
 
@@ -281,7 +281,7 @@ public class MapRestController {
             properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.TYPE, Value.FEATURE_CAP);
             feature.put(Graphic.PROPERTIES, properties);
             feature.put(Graphic.GEOMETRY, geometry);
 
@@ -321,7 +321,7 @@ public class MapRestController {
             properties.put(Building.COLOR, body.getBodyColor());
 
             JSONObject feature = new JSONObject();
-            feature.put(Graphic.TYPE, Value.FEATURE);
+            feature.put(Graphic.TYPE, Value.FEATURE_CAP);
             feature.put(Graphic.PROPERTIES, properties);
             feature.put(Graphic.GEOMETRY, geometry);
 

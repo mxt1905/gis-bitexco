@@ -5,7 +5,14 @@ package com.example.gisbitexco.constants;
  */
 public final class TableConst {
 
-    public final class TableName {
+    TableConst() {
+    }
+
+    public static final class TableName {
+
+        TableName() {
+        }
+
         public static final String BODY = "body";
         public static final String FACE = "face";
         public static final String FIELD = "field";
@@ -15,7 +22,11 @@ public final class TableConst {
     }
 
 
-    public final class ColumnName {
+    public static final class ColumnName {
+
+        ColumnName() {
+        }
+
         public static final String NODE_ID = "node_id";
         public static final String FACE_ID = "face_id";
         public static final String BODY_ID = "body_id";
