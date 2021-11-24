@@ -5,8 +5,8 @@ import com.example.gisbitexco.constants.ArcgisConst.Attribute.Graphic;
 import com.example.gisbitexco.constants.ArcgisConst.Value;
 import com.example.gisbitexco.dto.BodyDto;
 import com.example.gisbitexco.dto.FaceDto;
-import com.example.gisbitexco.service.BodyService;
-import com.example.gisbitexco.service.FaceService;
+import com.example.gisbitexco.service.body.BodySearchByIdService;
+import com.example.gisbitexco.service.face.FaceSearchByIdService;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -25,9 +25,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MapRestController {
 
-    private final FaceService faceService;
-    private final BodyService bodyService;
     private static final String BUILDING_DESCRIPTION = "Tòa Hành Chính Bitexco Financial";
+    private final FaceSearchByIdService faceSearchByIdService;
+    private final BodySearchByIdService bodySearchByIdService;
 
     @GetMapping("/api/bitexco_json")
     @SuppressWarnings("unchecked")
@@ -37,7 +37,7 @@ public class MapRestController {
         for (int i = 1; i <= 46; i++) {
             JSONObject json = new JSONObject();
             List<JSONArray> list = new ArrayList<>();
-            FaceDto faceDto = faceService.searchById(i);
+            FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
             faceDto.getNodes().forEach(nodeDto -> {
                 JSONArray jsonArrayCoordinates = new JSONArray();
                 jsonArrayCoordinates.add(0, nodeDto.getX());
@@ -65,7 +65,7 @@ public class MapRestController {
         for (int i = 166; i <= 197; i++) {
             JSONObject json = new JSONObject();
             List<JSONArray> list = new ArrayList<>();
-            FaceDto faceDto = faceService.searchById(i);
+            FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
             faceDto.getNodes().forEach(nodeDto -> {
                 JSONArray jsonArrayCoordinates = new JSONArray();
                 jsonArrayCoordinates.add(0, nodeDto.getX());
@@ -95,13 +95,13 @@ public class MapRestController {
     @GetMapping("/api/bitexco.geojson")
     @SuppressWarnings("unchecked")
     public JSONObject getBitexcoGeoJson() {
-        BodyDto body = bodyService.searchById(1);
+        BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
         List<JSONArray> list = new ArrayList<>();
         for (int i = 97; i <= 165; i++) {
             JSONArray coordinates = new JSONArray();
-            FaceDto faceDto = faceService.searchById(i);
+            FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
             faceDto.getNodes().forEach(nodeDto -> {
                 JSONArray jsonArrayCoordinates = new JSONArray();
                 jsonArrayCoordinates.add(0, nodeDto.getX());
@@ -135,13 +135,13 @@ public class MapRestController {
     @GetMapping("/api/bitexco_khung1.geojson")
     @SuppressWarnings("unchecked")
     public JSONObject getBitexcoGeoJson2() {
-        BodyDto body = bodyService.searchById(1);
+        BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
         for (int i = 80; i <= 95; i++) {
             List<JSONArray> list = new ArrayList<>();
             JSONArray coordinates = new JSONArray();
-            FaceDto faceDto = faceService.searchById(i);
+            FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
             faceDto.getNodes().forEach(nodeDto -> {
                 JSONArray jsonArrayCoordinates = new JSONArray();
                 jsonArrayCoordinates.add(0, nodeDto.getX());
@@ -176,13 +176,13 @@ public class MapRestController {
     @GetMapping("/api/bitexco_hanhchinh1_geojson")
     @SuppressWarnings("unchecked")
     public JSONObject getBitexcoGeoJson3() {
-        BodyDto body = bodyService.searchById(1);
+        BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
         for (int i = 67; i <= 78; i++) {
             JSONArray coordinates = new JSONArray();
             List<JSONArray> list = new ArrayList<>();
-            FaceDto faceDto = faceService.searchById(i);
+            FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
             faceDto.getNodes().forEach(nodeDto -> {
                 JSONArray jsonArrayCoordinates = new JSONArray();
                 jsonArrayCoordinates.add(0, nodeDto.getX());
@@ -216,13 +216,13 @@ public class MapRestController {
     @GetMapping("/api/bitexco_hanhchinh_geojson")
     @SuppressWarnings("unchecked")
     public JSONObject getBitexcoGeoJson4() {
-        BodyDto body = bodyService.searchById(1);
+        BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
         for (int i = 49; i <= 66; i++) {
             JSONArray coordinates = new JSONArray();
             List<JSONArray> list = new ArrayList<>();
-            FaceDto faceDto = faceService.searchById(i);
+            FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
             faceDto.getNodes().forEach(nodeDto -> {
                 JSONArray jsonArrayCoordinates = new JSONArray();
                 jsonArrayCoordinates.add(0, nodeDto.getX());
@@ -256,13 +256,13 @@ public class MapRestController {
     @GetMapping("/api/bitexco_sanbay.geojson")
     @SuppressWarnings("unchecked")
     public JSONObject getBitexcoGeoJson5() {
-        BodyDto body = bodyService.searchById(1);
+        BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
         for (int i = 96; i <= 96; i++) {
             JSONArray coordinates = new JSONArray();
             List<JSONArray> list = new ArrayList<>();
-            FaceDto faceDto = faceService.searchById(i);
+            FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
             faceDto.getNodes().forEach(nodeDto -> {
                 JSONArray jsonArrayCoordinates = new JSONArray();
                 jsonArrayCoordinates.add(0, nodeDto.getX());
@@ -296,13 +296,13 @@ public class MapRestController {
     @GetMapping("/api/bitexco_hanhchinh_bao.geojson")
     @SuppressWarnings("unchecked")
     public JSONObject getBitexcoGeoJson6() {
-        BodyDto body = bodyService.searchById(1);
+        BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
         for (int i = 47; i <= 48; i++) {
             JSONArray coordinates = new JSONArray();
             List<JSONArray> list = new ArrayList<>();
-            FaceDto faceDto = faceService.searchById(i);
+            FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
             faceDto.getNodes().forEach(nodeDto -> {
                 JSONArray jsonArrayCoordinates = new JSONArray();
                 jsonArrayCoordinates.add(0, nodeDto.getX());
