@@ -10,6 +10,7 @@ import java.util.List;
  */
 @Getter
 public class BaseException extends RuntimeException {
+    
     private final String errorCode;
     private List<String> errorFields = new ArrayList<>();
     private final Object[] arguments;

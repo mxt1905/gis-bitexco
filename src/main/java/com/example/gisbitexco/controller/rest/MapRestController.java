@@ -99,6 +99,7 @@ public class MapRestController {
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
         List<JSONArray> list = new ArrayList<>();
+
         for (int i = 97; i <= 165; i++) {
             JSONArray coordinates = new JSONArray();
             FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
@@ -138,10 +139,12 @@ public class MapRestController {
         BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
+
         for (int i = 80; i <= 95; i++) {
             List<JSONArray> list = new ArrayList<>();
             JSONArray coordinates = new JSONArray();
             FaceDto faceDto = faceSearchByIdService.setInput(i).execute();
+
             faceDto.getNodes().forEach(nodeDto -> {
                 JSONArray jsonArrayCoordinates = new JSONArray();
                 jsonArrayCoordinates.add(0, nodeDto.getX());
@@ -179,6 +182,7 @@ public class MapRestController {
         BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
+
         for (int i = 67; i <= 78; i++) {
             JSONArray coordinates = new JSONArray();
             List<JSONArray> list = new ArrayList<>();
@@ -219,6 +223,7 @@ public class MapRestController {
         BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
+
         for (int i = 49; i <= 66; i++) {
             JSONArray coordinates = new JSONArray();
             List<JSONArray> list = new ArrayList<>();
@@ -259,6 +264,7 @@ public class MapRestController {
         BodyDto body = bodySearchByIdService.setInput(1).execute();
         JSONObject featureCollection = new JSONObject();
         JSONArray features = new JSONArray();
+        
         for (int i = 96; i <= 96; i++) {
             JSONArray coordinates = new JSONArray();
             List<JSONArray> list = new ArrayList<>();
