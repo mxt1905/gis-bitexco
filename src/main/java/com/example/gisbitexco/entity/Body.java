@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Body
@@ -42,5 +42,5 @@ public class Body {
     @JoinTable(name = TableName.BODY_FACE,
         joinColumns = @JoinColumn(name = ColumnName.BODY_ID),
         inverseJoinColumns = @JoinColumn(name = ColumnName.FACE_ID))
-    private Set<Face> faces = new HashSet<>();
+    private List<Face> faces = new ArrayList<>();
 }

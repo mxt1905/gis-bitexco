@@ -6,8 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Face
@@ -36,5 +36,5 @@ public class Face {
         joinColumns = @JoinColumn(name = ColumnName.FACE_ID),
         inverseJoinColumns = @JoinColumn(name = ColumnName.NODE_ID)
     )
-    private Set<Node> nodes = new HashSet<>();
+    private List<Node> nodes = new ArrayList<>();
 }

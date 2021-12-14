@@ -33,7 +33,7 @@ public class BodyMapperImpl implements BodyMapper {
             .setBodyStorey(body.getBodyStorey())
             .setBodyAddress(body.getBodyAddress())
             .setField(fieldMapper.toDto(body.getField()))
-            .setFaces(faceMapper.toDtoSet(body.getFaces()));
+            .setFaces(faceMapper.toDtoList(body.getFaces()));
         return response;
     }
 

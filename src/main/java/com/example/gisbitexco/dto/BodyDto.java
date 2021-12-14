@@ -3,7 +3,7 @@ package com.example.gisbitexco.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * BodyDto
@@ -20,5 +20,5 @@ public class BodyDto {
     private Integer bodyStorey;
     private String bodyAddress;
     private FieldDto field;
-    private Set<FaceDto> faces;
+    private List<FaceDto> faces;
 }

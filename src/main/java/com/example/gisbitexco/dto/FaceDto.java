@@ -3,8 +3,8 @@ package com.example.gisbitexco.dto;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * FaceDto
@@ -18,5 +18,5 @@ public class FaceDto {
     private String faceSymbolRenderer;
     private Integer faceData;
     private String faceInFile;
-    private Set<NodeDto> nodes = new HashSet<>();
+    private List<NodeDto> nodes = new ArrayList<>();
 }

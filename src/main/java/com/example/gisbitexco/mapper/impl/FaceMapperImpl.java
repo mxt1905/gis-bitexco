@@ -28,7 +28,7 @@ public class FaceMapperImpl implements FaceMapper {
             .setFaceSymbolRenderer(face.getFaceSymbolRenderer())
             .setFaceData(face.getFaceData())
             .setFaceInFile(face.getFaceInFile())
-            .setNodes(nodeMapper.toDtoSet(face.getNodes()));
+            .setNodes(nodeMapper.toDtoList(face.getNodes()));
         return response;
     }
 
